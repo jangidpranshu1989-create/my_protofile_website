@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranshu J. | Aspiring Developer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for premium look and transitions based on user's color palette */
+        :root {
+            --primary-bg: #17223B; /* Oxford Blue */
+            --accent-color: #8D0240; /* Murrey */
+            --secondary-accent: #1045A8; /* Cobalt Blue */
+            --card-bg: #1B2021; /* Eerie Black */
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* View Transition Effect */
+        .view-content {
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        }
+        
+        /* Ensures the whole screen is covered by the current view */
+        .view-container {
+            /* Space for bottom nav (h-16) */
+            min-height: calc(100vh - 80px); 
+            padding-top: 80px;
+            padding-bottom: 70px; 
+        }
+
+        /* Custom Scrollbar for premium feel */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--primary-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6F002F; }
+
+        /* Custom Button Hover effect (Main Accent: Murrey) */
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: white; 
+            transition: all 0.3s ease;
+        }
+        .btn-accent:hover {
+            box-shadow: 0 4px 15px rgba(141, 2, 64, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        /* Navigation Color Styling */
+        .nav-btn.active-desktop {
+            color: var(--accent-color) !important;
+            font-weight: 700;
+        }
+
+        /* Hide the bottom nav on large screens and show on mobile */
+        .bottom-nav-mobile {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .bottom-nav-mobile {
+                display: flex;
+            }
+            .top-nav-desktop {
+                display: none;
+            }
+        }
+        @media (min-width: 769px) {
+             .top-nav-desktop {
+                display: block;
+            }
+        }
+    </style>
+    <script>
+        // Set up the custom color palette for Tailwind
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Colors based on Hex codes from the image
+                        'oxford-blue': '#17223B', 
+                        'eerie-black': '#1B2021',
+                        'murrey-accent': '#8D0240',
+                        'cobalt-blue': '#1045A8',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-gray-100 antialiased">
+
+    <!-- Header / Navigation Bar (Sticky Top) -->
+    <header id="header" class="fixed top-0 left-0 right-0 bg-oxford-blue z-50 shadow-lg border-b border-gray-700/50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center px-4 py-4">
+            <div class="text-2xl font-bold text-murrey-accent tracking-wider">Vanshu Jangid</div>
+            
+            <!-- Desktop Navigation (Hidden on Mobile) -->
+            <nav class="space-x-4 md:space-x-8 top-nav-desktop">
+                <button data-view="home" class="nav-btn text-lg font-medium hover:text-murrey-accent transition duration-300">Home</button>
+                <button data-view="about" class="nav-btn text-lg font-medium hover:text-murrey-accent transition duration-300">About</button>
+                <button data-view="skills" class="nav-btn text-lg font-medium hover:text-murrey-accent transition duration-300">Skills</button>
+                <button data-view="projects" class="nav-btn text-lg font-medium hover:text-murrey-accent transition duration-300">Projects</button>
+                <button data-view="contact" class="nav-btn text-lg font-semibold text-white bg-murrey-accent px-4 py-2 rounded-lg transition duration-300 hover:opacity-90">Contact</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="view-container max-w-6xl mx-auto px-4">
+        
+        <!-- 1. HOME VIEW (Default View) -->
+        <section id="view-home" data-view-content class="view-content flex items-center justify-center min-h-[calc(100vh-80px)] opacity-100 transform translate-y-0">
+            <div class="text-center p-8 md:p-16 rounded-xl bg-eerie-black/80 backdrop-blur-sm border border-murrey-accent/20">
+                <p class="text-xl text-murrey-accent mb-4">Hello, I am an Aspiring Developer!</p>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6">
+                    <span class="text-white">Pranshu</span> <span class="text-murrey-accent">Jangid</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+                    An enthusiastic beginner, diving deep into **Python, HTML, CSS, and JavaScript** to build real-world applications and projects.
+                </p>
+                <button data-view="projects" class="nav-btn btn-accent px-8 py-3 rounded-full font-bold shadow-xl transition duration-300">
+                    View My First Projects →
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT VIEW -->
+        <section id="view-about" data-view-content class="view-content hidden pt-12">
+            <div class="p-8 md:p-12 bg-eerie-black rounded-xl shadow-2xl border border-gray-700/50">
+                <h2 class="text-4xl font-bold mb-8 text-murrey-accent">About Me</h2>
+                <div class="text-left text-lg space-y-6">
+                    <p>My name is Pranshu Jangid, also known as Vanshu Jangid among friends. I have recently stepped into the world of coding. My goal is to not just study theory, but to strengthen my skills by building small, practical projects.</p>
+                    <p>I am currently focused on **Python** for programming fundamentals and the foundations of **Web Development** (HTML, CSS, JavaScript). I believe strong basic knowledge is essential for creating robust applications.</p>
+                    <p class="text-murrey-accent font-semibold">Learning by building is my motto!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SKILLS VIEW -->
+        <section id="view-skills" data-view-content class="view-content hidden pt-12">
+            <h2 class="text-4xl font-bold mb-10 text-murrey-accent">My Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="skill-card p-6 bg-eerie-black rounded-xl border-t-4 border-secondary-accent/50 hover:bg-eerie-black/80 transition duration-300 shadow-lg">
+                    <p class="text-3xl mb-2">💻</p>
+                    <h3 class="text-xl font-semibold mb-1">HTML</h3>
+                    <p class="text-sm text-gray-400">Website Structure</p>
+                </div>
+                <div class="skill-card p-6 bg-eerie-black rounded-xl border-t-4 border-secondary-accent/50 hover:bg-eerie-black/80 transition duration-300 shadow-lg">
+                    <p class="text-3xl mb-2">🎨</p>
+                    <h3 class="text-xl font-semibold mb-1">CSS</h3>
+                    <p class="text-sm text-gray-400">Styling and Design</p>
+                </div>
+                <div class="skill-card p-6 bg-eerie-black rounded-xl border-t-4 border-secondary-accent/50 hover:bg-eerie-black/80 transition duration-300 shadow-lg">
+                    <p class="text-3xl mb-2">🧠</p>
+                    <h3 class="text-xl font-semibold mb-1">JavaScript</h3>
+                    <p class="text-sm text-gray-400">Interactivity and Logic</p>
+                </div>
+                <div class="skill-card p-6 bg-eerie-black rounded-xl border-t-4 border-secondary-accent/50 hover:bg-eerie-black/80 transition duration-300 shadow-lg">
+                    <p class="text-3xl mb-2">🐍</p>
+                    <h3 class="text-xl font-semibold mb-1">Python</h3>
+                    <p class="text-sm text-gray-400">Core Programming</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PROJECTS VIEW -->
+        <section id="view-projects" data-view-content class="view-content hidden pt-12">
+            <h2 class="text-4xl font-bold mb-10 text-murrey-accent">My First Projects</h2>
+            <div class="space-y-8 max-w-4xl mx-auto text-left">
+                
+                <!-- Project 1: Python Project -->
+                <div class="project-card p-6 bg-eerie-black rounded-xl shadow-xl border-l-4 border-murrey-accent">
+                    <h3 class="text-2xl font-semibold mb-2 text-murrey-accent">1. Python CLI 'Guess The Number' Game</h3>
+                    <p class="text-gray-300 mb-3">My first basic Python project. This command-line game uses the `random` module, loops, and conditional statements (`if`/`else`) to handle user input and provide feedback.</p>
+                    <p class="text-sm text-gray-400">Skills Used: Python Basics, Logic</p>
+                </div>
+                
+                <!-- Project 2: HTML/CSS Project (This Portfolio) -->
+                <div class="project-card p-6 bg-eerie-black rounded-xl shadow-xl border-l-4 border-murrey-accent">
+                    <h3 class="text-2xl font-semibold mb-2 text-murrey-accent">2. Interactive Portfolio Website</h3>
+                    <p class="text-gray-300 mb-3">The very website you are viewing! Built to learn HTML structure, responsive CSS layout (Tailwind CSS), and basic JavaScript for smooth, single-page application (SPA) style navigation.</p>
+                    <p class="text-sm text-gray-400">Skills Used: HTML, CSS, UI/UX, JS Basics, Responsive Design</p>
+                </div>
+
+                <!-- Project 3: Placeholder (Non-Chatbot version) -->
+                <div class="project-card p-6 bg-eerie-black rounded-xl shadow-xl border-l-4 border-murrey-accent">
+                    <h3 class="text-2xl font-semibold mb-2 text-murrey-accent">3. Future Web Application Concept</h3>
+                    <p class="text-gray-300 mb-3">My next goal is to build a complex, interactive web application that demonstrates full-stack capability, integrating both Python (backend) and JavaScript (frontend) for a complete experience.</p>
+                    <p class="text-sm text-gray-400">Skills Used: Planned: Full-Stack Development, API Integration, Advanced Python</p>
+                </div>
+                
+                <!-- Simple message encouraging more projects -->
+                <div class="pt-12 text-center border-t border-gray-700/50">
+                    <p class="text-2xl font-bold mb-2 text-gray-100">What's Next? 🤔</p>
+                    <p class="text-gray-400">Learning should be a continuous process. My next projects will focus on combining Python's power with interactive web interfaces.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CONTACT VIEW -->
+        <section id="view-contact" data-view-content class="view-content hidden pt-12">
+            <h2 class="text-4xl font-bold mb-10 text-murrey-accent">Contact Information</h2>
+            <div class="space-y-6 max-w-2xl mx-auto">
+                <p class="text-lg text-gray-300">For feedback, project ideas, or any questions, please use the details below. You can easily copy these identifiers.</p>
+                
+                <!-- Static Email Display -->
+                <div class="block w-full bg-eerie-black text-white text-center px-8 py-4 rounded-xl font-bold text-lg shadow-xl border border-secondary-accent select-all">
+                    📧 Email: jangid.pranshu1989@gmail.com
+                </div>
+                
+                <!-- Static Instagram ID Display -->
+                <div class="block w-full bg-eerie-black text-white text-center px-8 py-4 rounded-xl font-bold text-lg shadow-xl border border-secondary-accent select-all">
+                    📸 Instagram ID: codehive_studio
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Mobile-Style Bottom Navigation Bar (Hidden on large screens) -->
+    <nav class="bottom-nav-mobile fixed bottom-0 left-0 right-0 bg-eerie-black border-t border-gray-700/50 z-50 h-16 shadow-2xl">
+        <button data-view="home" class="nav-btn flex-1 flex flex-col items-center justify-center p-2 text-gray-400 hover:text-murrey-accent transition duration-300">
+            <span class="text-xl">🏠</span>
+            <span class="text-xs font-medium">Home</span>
+        </button>
+        <button data-view="skills" class="nav-btn flex-1 flex flex-col items-center justify-center p-2 text-gray-400 hover:text-murrey-accent transition duration-300">
+            <span class="text-xl">⚙️</span>
+            <span class="text-xs font-medium">Skills</span>
+        </button>
+        <button data-view="projects" class="nav-btn flex-1 flex flex-col items-center justify-center p-2 text-gray-400 hover:text-murrey-accent transition duration-300">
+            <span class="text-xl">🚀</span>
+            <span class="text-xs font-medium">Projects</span>
+        </button>
+        <button data-view="contact" class="nav-btn flex-1 flex flex-col items-center justify-center p-2 text-gray-400 hover:text-murrey-accent transition duration-300">
+            <span class="text-xl">✉️</span>
+            <span class="text-xs font-medium">Contact</span>
+        </button>
+    </nav>
+    
+    <!-- General Footer (For Desktop Only) -->
+    <footer class="text-center py-6 border-t border-gray-700/50 mt-10 top-nav-desktop">
+        <p class="text-sm text-gray-500">&copy; 2024 Pranshu Jangid | Built with HTML, Tailwind CSS, and JS.</p>
+    </footer>
+
+    <!-- JavaScript for View Switching (SPA Logic) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const viewContents = document.querySelectorAll('[data-view-content]');
+            
+            let currentView = 'home';
+
+            // Function to update the view (Mobile App style SPA)
+            const updateView = (targetView) => {
+                if (targetView === currentView) return; 
+
+                viewContents.forEach(view => {
+                    const viewId = view.id.replace('view-', '');
+                    
+                    if (viewId === currentView) {
+                        // Fade out current view
+                        view.style.opacity = '0';
+                        view.style.transform = 'translateY(10px)';
+                        
+                        setTimeout(() => {
+                            view.classList.add('hidden');
+                        }, 400); 
+                    }
+                    
+                    if (viewId === targetView) {
+                        // Fade in new view
+                        view.classList.remove('hidden');
+                        setTimeout(() => {
+                            view.style.opacity = '1';
+                            view.style.transform = 'translateY(0)';
+                        }, 10);
+                    }
+                });
+                currentView = targetView;
+
+                // Update active state in navigation (for both top and bottom buttons)
+                navButtons.forEach(btn => {
+                    const isContactButton = btn.dataset.view === 'contact';
+                    const isDesktopNav = btn.closest('.top-nav-desktop');
+                    
+                    // 1. Reset Styles
+                    btn.classList.remove('active-desktop', 'font-extrabold', 'text-murrey-accent', 'text-gray-400');
+                    if (isDesktopNav) {
+                        if (isContactButton) {
+                            // Contact button base style
+                            btn.classList.remove('text-navy-dark', 'bg-murrey-accent', 'hover:opacity-90'); 
+                            btn.classList.add('text-white', 'bg-murrey-accent', 'hover:opacity-90');
+                        } else {
+                            // Normal desktop button base style
+                            btn.classList.add('text-gray-100');
+                        }
+                    } else {
+                        // Mobile button base style
+                        btn.classList.add('text-gray-400');
+                    }
+                    
+                    // 2. Apply Active State
+                    if (btn.dataset.view === targetView) {
+                         if (isDesktopNav) {
+                            if (!isContactButton) {
+                                btn.classList.add('active-desktop');
+                            }
+                        } else {
+                            // Mobile active state
+                            btn.classList.remove('text-gray-400');
+                            btn.classList.add('text-murrey-accent');
+                        }
+                    }
+                });
+            };
+
+            // Event listener for all navigation buttons
+            navButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const targetView = e.currentTarget.dataset.view;
+                    updateView(targetView);
+                });
+            });
+
+            // Set initial active state and ensure Home is visible
+            updateView('home'); 
+        });
+    </script>
+</body>
+
+
+
